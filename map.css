@@ -1,0 +1,42 @@
+/* CSS */
+.fancy{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.fancy td, .fancy th{
+  padding: 5px 18px;
+}
+
+.fancy th{
+  background-color: gray;
+  color: white;
+}
+
+.decimal{
+  text-align: right;
+}
+
+.fancy tr:nth-child(even){
+  background-color: #eff4ff;
+}
+
+.fancy tr:nth-child(odd){
+  background-color: #dee3ed;
+}
+
+.subunit.SCT { fill: #ddc; }
+.subunit.WLS { fill: #cdd; }
+.subunit.NIR { fill: #cdc; }
+.subunit.ENG { fill: #dcd; }
+.subunit.IRL { display: none; }
+
+.subunit-boundary {
+  fill: none;
+  stroke: #777;
+  stroke-dasharray: 2,2;
+  stroke-linejoin: round;
+}
+
+.subunit-boundary.IRL {
+  stroke: #aaa;
+}
