@@ -24,19 +24,34 @@
   background-color: #dee3ed;
 }
 
-.subunit.SCT { fill: #ddc; }
-.subunit.WLS { fill: #cdd; }
-.subunit.NIR { fill: #cdc; }
-.subunit.ENG { fill: #dcd; }
-.subunit.IRL { display: none; }
+.subunit { fill: #F0F8FF; }
+.subunit.USB { fill: #E6E6FA; }
+.subunit.BRA { fill: #E6E6FA; }
+.subunit.INX { fill: #E6E6FA; }
+.subunit.ESX { fill: #E6E6FA; }
+.subunit.GTM { fill: #E6E6FA; }
+.subunit.HND { fill: #E6E6FA; }
+.subunit.RUA { fill: #E6E6FA; }
+.subunit.DEU { fill: #E6E6FA; }
+
 
 .subunit-boundary {
   fill: none;
-  stroke: #777;
-  stroke-dasharray: 2,2;
+  stroke:   #708090;
+  stroke-dasharray: 1,1;
   stroke-linejoin: round;
 }
 
-.subunit-boundary.IRL {
-  stroke: #aaa;
+.subunit-label {
+  fill:   #696969;
 }
+
+.place {
+  fill: none;
+  stroke: #708090;
+}
+
+.place-label {
+  fill:   #696969;
+}
+
