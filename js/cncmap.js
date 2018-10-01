@@ -21,9 +21,7 @@ var projection = d3.geo.mercator()
 
 // define what each point-path will look like
 var path = d3.geo.path()
-    .projection(projection)
-    // .pointRadius(2)
-    ;
+    .projection(projection);
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -45,7 +43,28 @@ d3.json("data/world_places.json", function(error, world_places) {
       .data(subunits.features)
     .enter().append("path")
       .attr("class", function(d) { return "subunit " + d.id; })
-      .attr("d", path);
+      .attr("d", path)
+      .on("mouseover", function(d,i){
+                                    div.transition()
+                                      .duration(200)
+                                      .style("opacity", .9)
+                                      .style("background", "orange");
+                                    div
+                                      .html(function(f) {return d.properties.ADMIN})
+                                      .style("left", (d3.event.pageX) + "px")
+                                      .style("top", (d3.event.pageY - 28) + "px");
+                                    })
+      .on("mouseout", function(d,i){
+                                    div.transition()
+                                      .duration(500)
+                                      .style("opacity", 0);
+                                    });
+
+  // add boundries
+  svg.append("path")
+    .datum(topojson.mesh(world_places, world_places.objects.subunits, function(a, b) { return a !== b && a.id !== "IRL"; }))
+    .attr("d", path)
+    .attr("class", "subunit-boundary");
 
   // add places
   svg.selectAll(".circle")
@@ -60,8 +79,9 @@ d3.json("data/world_places.json", function(error, world_places) {
                                       .attr("fill", "orange")
                                       .attr("r", "4px");
                                     div.transition()
-                                      .duration(200)
-                                      .style("opacity", .9);
+                                      .duration(0)
+                                      .style("opacity", .9)
+                                      .style("background", "lightsteelblue");
                                     div
                                       .html(function(f) {return d.properties.name + "<br>"
                                                                 + "long: " + Math.round(d.geometry.coordinates[0]*100)/100 + "<br>"
@@ -77,8 +97,7 @@ d3.json("data/world_places.json", function(error, world_places) {
                                     div.transition()
                                       .duration(500)
                                       .style("opacity", 0);
-                                    })
-      ;
+                                    });
 
   // add points outside your original dataset
   aa = [-41.160342, 28.180501, "titanic"]   // new long,lat, name
@@ -96,8 +115,9 @@ d3.json("data/world_places.json", function(error, world_places) {
                                       .attr("fill", "orange")
                                       .attr("r", "10px");
                                     div.transition()
-                                      .duration(200)
-                                      .style("opacity", .9);
+                                      .duration(0)
+                                      .style("opacity", .9)
+                                      .style("background", "lightsteelblue");
                                     div
                                       .html(function(f) {return d[2] + "<br>"
                                                                 + "long: " + Math.round(d[0]*100)/100 + "<br>"

@@ -38,6 +38,7 @@
 .subunit-boundary {
   fill: none;
   stroke:   #708090;
+  stroke-width: 0.5;
   stroke-dasharray: 1,1;
   stroke-linejoin: round;
 }
