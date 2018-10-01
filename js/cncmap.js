@@ -80,16 +80,39 @@ d3.json("data/world_places.json", function(error, world_places) {
                                     })
       ;
 
+  // add points outside your original dataset
+  aa = [-41.160342, 28.180501, "titanic"]   // new long,lat, name
+  bb = [-41.386129, 23.476145, "submarine"] // new long,lat, name
 
-  // // place labels
-  // svg.selectAll(".place-label")
-  //     .data(places.features)
-  //   .enter().append("text")
-  //     .attr("class", "place-label")
-  //     .attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })
-  //     .attr("x", function(d) { return d.geometry.coordinates[0] > -1 ? 6 : -6; })
-  //     .attr("dy", ".35em")
-  //     .style("text-anchor", function(d) { return d.geometry.coordinates[0] > -1 ? "start" : "end"; })
-  //     .text(function(d) { return d.properties.name; });
+  svg.selectAll(".circle")
+  		.data([aa,bb])           // define data as your new points
+    .enter().append("circle")
+  		.attr("cx", function (d) { return projection(d)[0]; })
+  		.attr("cy", function (d) { return projection(d)[1]; })
+  		.attr("r", "5px")
+  		.attr("fill", "blue")
+      .on("mouseover", function(d,i){
+                                    d3.select(this)
+                                      .attr("fill", "orange")
+                                      .attr("r", "10px");
+                                    div.transition()
+                                      .duration(200)
+                                      .style("opacity", .9);
+                                    div
+                                      .html(function(f) {return d[2] + "<br>"
+                                                                + "long: " + Math.round(d[0]*100)/100 + "<br>"
+                                                                + "lat: "  + Math.round(d[1]*100)/100
+                                                        })
+                                      .style("left", (d3.event.pageX) + "px")
+                                      .style("top", (d3.event.pageY - 28) + "px");
+                                    })
+      .on("mouseout", function(d,i){
+                                    d3.select(this)
+                                      .attr("fill", "black")
+                                      .attr("r", "2px");
+                                    div.transition()
+                                      .duration(500)
+                                      .style("opacity", 0);
+                                    })
 
 });
