@@ -12,7 +12,7 @@
 
 // SVG setup
 var width = 960,
-    height = 1160;
+    height = 600;
 
 // create a function that will scale+project onto map
 var projection = d3.geo.mercator()
@@ -23,12 +23,12 @@ var projection = d3.geo.mercator()
 var path = d3.geo.path()
     .projection(projection);
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#map").append("svg")
     .attr("width", width)
     .attr("height", height);
 
 // Define the div for the tooltip
-var div = d3.select("body").append("div")
+var div = d3.select("#map").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
