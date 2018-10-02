@@ -3,7 +3,7 @@
 ## Main Source:
 * https://bost.ocks.org/mike/map/
 
-Basically, we create a TopoJSON ahead of time (including our points and our map) and then plot that one file. 
+Basically, create a TopoJSON (including our points and our map) and then plot the world map with meteor strikes. 
 
 
 ## If you want:
